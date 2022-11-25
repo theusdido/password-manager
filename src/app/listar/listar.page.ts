@@ -39,4 +39,17 @@ export class ListarPage implements OnInit {
   upload(){
     this.firebase.upload();
   }
+  download(){
+    this.firebase.download()
+    .subscribe(
+      (data:any)=>{
+        // if (this.local_storage.get('credenciais') != data){
+        //   alert('Seus dados estão desatualizados');
+        // }
+        this.local_storage.set('credenciais',data);
+        this.carregar();
+      }
+    );
+
+  }
 }

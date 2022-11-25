@@ -17,4 +17,10 @@ export class FirebaseService {
     .set(this.ls.getJSON('credenciais'));
   }
 
+  download(){
+    return this.firebase
+    .object('/credenciais')
+    .valueChanges();
+  }
+
 }
