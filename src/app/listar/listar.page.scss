@@ -1,0 +1,34 @@
+.olho-maconaria {
+    width:32px;
+    height: 14px;
+    border:1px solid #DDD;
+    transform: translate(0,5px);
+    color:#222;
+}
+
+ion-note,
+ion-label
+{
+    display: block;
+}
+
+.msg-sem-registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+}
+
+
+ion-icon[name=trash]
+{
+    font-size: 1.3rem;
+}
+ion-icon[name=create]
+{
+    font-size: 1.4rem;
+}
+.olhos
+{
+    font-size:1.5rem;
+}

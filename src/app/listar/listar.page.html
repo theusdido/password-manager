@@ -1,0 +1,140 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Password Manager</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/cadastrar">  
+        <ion-icon 
+          name="add"
+          color="dark"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-fab slot="fixed" vertical="bottom" horizontal="end" [edge]="true">
+  <ion-fab-button routerLink="/cadastrar">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab> -->
+
+<ion-content>
+
+  <!-- <ion-button routerLink="/home">Adicionar</ion-button>
+  <ion-button (click)="upload()">Backup</ion-button>
+  <ion-button (click)="download()">Restore</ion-button> -->
+
+  <ion-searchbar 
+    [attr.id]="'btn-pesquisar'"
+    placeholder="Pesquisar"
+    [debounce]="500" 
+    (ionInput)="pesquisar($event.detail.value || '')"
+  ></ion-searchbar>
+  <ion-accordion-group #accordionGroup>
+    @for(d of filter_data;track d;let i = $index;){
+      <ion-accordion 
+      >
+        <ion-item slot="header" color="light">
+          <ion-label>{{ d.site }}</ion-label>
+        </ion-item>
+        <div slot="content">
+          <ion-list>
+
+            @if(d.is_nao_consolidado){
+              <ion-item lines="full">
+                <ion-button 
+                  slot="end" 
+                  fill="clear"
+                  routerLink="/cadastrar/{{ d.codigo }}"
+                >
+                  <ion-icon 
+                    name="create"
+                    color="dark"
+                  ></ion-icon>
+                </ion-button>                
+                <ion-button 
+                  slot="end" 
+                  fill="clear"
+                  (click)="excluir(i)"
+                >
+                  <ion-icon 
+                    name="trash"
+                    color="danger"
+                  ></ion-icon>
+                </ion-button>
+              </ion-item>
+            }
+
+            <ion-item lines="full">
+              <ion-input 
+                labelPlacement="stacked" 
+                label="Site"         
+                [placeholder]="d.url"
+                [readonly]="true"
+              ></ion-input>              
+            </ion-item>
+            <ion-item lines="full">
+              <!-- <ion-label>
+                <ion-text>Login: <strong>{{ d.login }}</strong></ion-text>
+                <ion-note color="medium" class="ion-text-wrap">{{ d.url }}</ion-note>
+              </ion-label>             -->
+              <ion-input 
+                labelPlacement="stacked" 
+                label="Login"         
+                [placeholder]="d.login"
+                [readonly]="true"
+              >
+            </ion-input>
+            </ion-item>
+            <ion-item lines="full">
+              
+              <!-- <ion-input [type]="pwd_type" [value]="d.senha"></ion-input> -->
+              <!-- <ion-icon 
+                class="olho-maconaria" 
+                style="zoom:1.5;" 
+                [name]="icon_type"
+                (click)="exibir()"
+              ></ion-icon> -->
+
+              <ion-input 
+                labelPlacement="stacked" 
+                label="Senha" 
+                [type]="getTipoSenha(d)"
+                [readonly]="true"
+                [value]="d.senha"
+                [disabled]="true"
+              >
+              </ion-input>
+              <ion-button 
+              fill="clear" 
+              slot="end" 
+              aria-label="Show/Hide"
+              (click)="toggleSenha(d)"
+            >
+              <ion-icon 
+                [name]="getIconeSenha(d)"
+                slot="icon-only" 
+                aria-hidden="true" 
+                color="dark"
+                class="olhos"
+              ></ion-icon>
+            </ion-button>              
+            </ion-item>
+        </ion-list>
+        </div>
+      </ion-accordion>
+    }
+  </ion-accordion-group>
+
+  @if(filter_data.length == 0){
+    <ion-card>
+      <ion-card-content>
+        <div class="msg-sem-registro">
+          <ion-icon slort="start" name="warning"></ion-icon>
+          <ion-text slort="end">Nenhuma Credencial Cadastrada</ion-text>
+        </div>
+      </ion-card-content>
+    </ion-card>  
+  }
+</ion-content>
+<app-rodape></app-rodape>

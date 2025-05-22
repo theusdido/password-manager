@@ -1,0 +1,106 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>          
+    <ion-title>
+      Credencial      
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-fab slot="fixed" vertical="top" horizontal="end" [edge]="true">
+    <ion-fab-button
+      (click)="armazenar()"
+      color="dark"
+    >
+      <ion-icon 
+        name="checkmark" 
+        color="light"
+      ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Credencial</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-list>
+      <ion-item>
+        <!-- <ion-label position="stacked">Site</ion-label> -->
+        <ion-input 
+          labelPlacement="stacked" 
+          label="Site"         
+          placeholder="Meu Site"
+          [(ngModel)]="_credencial.site"
+        >
+          <ion-icon slot="start" name="globe" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>      
+      <ion-item>
+        <!-- <ion-label position="stacked">URL</ion-label> -->
+        <ion-input 
+          labelPlacement="stacked" 
+          label="URL"         
+          placeholder="https://meusite.com"
+          [(ngModel)]="_credencial.url"
+        >
+          <ion-icon slot="start" name="link" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <!-- <ion-label position="stacked">Login</ion-label> -->
+        <ion-input 
+          labelPlacement="stacked" 
+          label="Login"         
+          placeholder="Nome de Usuário"
+          [(ngModel)]="_credencial.login"
+        >
+          <ion-icon slot="start" name="person" aria-hidden="true"></ion-icon>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <!-- <ion-label position="stacked">Senha</ion-label>
+        <ion-input 
+          type="password"
+          [(ngModel)]="_credencial.senha"
+        ></ion-input> -->
+
+        <ion-input 
+          labelPlacement="stacked" 
+          label="Senha" 
+          placeholder="*******"
+          [(ngModel)]="_credencial.senha"
+          [type]="type_pwd"
+        >
+          <ion-icon slot="start" name="lock-closed" aria-hidden="true"></ion-icon>
+          <ion-button 
+            fill="clear" 
+            slot="end" 
+            aria-label="Show/hide" 
+            (click)="togglePwd()"
+          >
+            <ion-icon class="eye-icon-pwd" slot="icon-only" [name]="eye_icon_pwd" aria-hidden="true" color="dark"></ion-icon>
+          </ion-button>
+        </ion-input>
+      </ion-item>
+    </ion-list>    
+    <!-- <ion-button 
+      expand="block"
+      (click)="armazenar()"
+    >Armazenar</ion-button>
+    
+    <ion-button
+      expand="block"
+      (click)="limpar()"
+      color="danger"
+    >Limpar</ion-button>
+
+    <ion-button expand="block" routerLink="/listar">Voltar</ion-button> -->
+  </div>
+</ion-content>

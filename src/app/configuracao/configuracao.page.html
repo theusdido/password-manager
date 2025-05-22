@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>    
+    <ion-title>Configurações</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Configurações</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-list-header color="medium">
+      <ion-label>Credenciais</ion-label>
+    </ion-list-header>
+    <ion-item lines="full">
+      <ion-label>Sincronizar</ion-label>
+      <ion-button 
+        fill="clear"
+        (click)="sincronizar()"
+      >
+        <ion-icon name="swap-vertical-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label>Enviar</ion-label>
+      <ion-button 
+        fill="clear"
+        id="upload-alert"
+      >
+        <ion-icon name="push-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-item>    
+    <ion-item lines="full">
+      <ion-label>Baixar</ion-label>
+      <ion-button fill="clear" (click)="download()">
+        <ion-icon name="download-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-item>    
+    <ion-item lines="full">
+      <ion-label>Limpar</ion-label>
+      <ion-button fill="clear" (click)="limpar()">
+        <ion-icon name="remove-circle-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-item>    
+    <ion-list-header color="medium">
+      <ion-label>Conta</ion-label>
+    </ion-list-header>    
+    <ion-item lines="full">
+      <ion-label>Alterar Senha</ion-label>
+      <ion-button fill="clear">
+        <ion-icon name="lock-closed-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-item>    
+  </ion-list>
+
+  <ion-alert
+    #uploadAlert
+    trigger="upload-alert"
+    header="Enviar"
+    [buttons]="alertButtons"
+    [inputs]="alertInputs"
+  ></ion-alert>  
+</ion-content>
