@@ -20,7 +20,7 @@ import {
   IonSearchbar, 
   IonButtons, 
   IonListHeader,
-  AlertController, IonCard, IonCardContent, IonText } from '@ionic/angular/standalone';
+  AlertController, IonCard, IonCardContent, IonText, IonImg } from '@ionic/angular/standalone';
 import { Router, RouterLink } from '@angular/router';
 import { add,create,createOutline,eye,eyeOff,pencil,trash, warning } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
@@ -30,7 +30,7 @@ import { RodapePage } from "../rodape/rodape.page";
   selector: 'app-listar',
   templateUrl: './listar.page.html',
   styleUrls: ['./listar.page.scss'],
-  imports: [
+  imports: [IonImg, 
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -78,12 +78,14 @@ export class ListarPage implements OnInit {
 
   carregar(){
     this.data = this.local_storage.getJSON('credenciais');
-    this.filter_data = this.data.map(d => ({
-      ...d,
-      senhaVisivel: false,
-      is_nao_consolidado: (d.id == 0 || d.id == null || d.id == undefined)
-    }))
-    .reverse();
+    if (this.data != null){
+      this.filter_data = this.data.map(d => ({
+        ...d,
+        senhaVisivel: false,
+        is_nao_consolidado: (d.id == 0 || d.id == null || d.id == undefined)
+      }))
+      .reverse();
+    }
   }
 
   toggleSenha(item: any) {
